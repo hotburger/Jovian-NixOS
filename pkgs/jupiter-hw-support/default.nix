@@ -90,11 +90,15 @@ stdenv.mkDerivation {
     substituteInPlace $out/lib/hwsupport/* \
       --replace-warn ". /usr/lib/hwsupport" ". $out/lib/hwsupport"
 
-    mkdir -p $out/lib/udev/rules.d
+    cp -r usr/lib/udev $out/lib
 
-    substitute usr/lib/udev/rules.d/99-steamos-automount.rules $out/lib/udev/rules.d/99-steamos-automount.rules \
+    substituteInPlace $out/lib/udev/rules.d/*.rules \
       --replace-warn "/bin/systemd-run" "${systemd}/bin/systemd-run" \
-      --replace-warn "/usr/lib/hwsupport" "$out/lib/hwsupport"
+      --replace-warn "/usr/lib/hwsupport" "$out/lib/hwsupport" \
+
+    substituteInPlace $out/lib/udev/rules.d/80-gpu-reset.rules \
+      --replace-fail "/sbin/kill" "${util-linux}/bin/kill" \
+      --replace-fail "/usr/sbin/systemctl restart sddm" "${systemd}/bin/systemctl restart greetd"
 
     ${resholve.phraseSolution "jupiter-hw-support" solution}
 
