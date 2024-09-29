@@ -13,8 +13,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "Jovian-Experiments";
     repo = "jupiter-hw-support";
-    rev = "jupiter-${version}";
-    hash = "sha256-K3NhBWiKObi4JVg28r+rqanjZGkHTC2QL/u09B7sRA8=";
+    rev = "9bf0d4f715f9b558e6a9c3926032f8e3463d0e55";
+    hash = "sha256-WnWvfp1vk7JM96qH+0UV9gwfv5ucymPhitFUMchOtFM=";
   };
 
   patches = [
