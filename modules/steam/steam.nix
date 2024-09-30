@@ -109,7 +109,7 @@ in
         # We don't support adopting a drive, yet.
         STEAM_ALLOW_DRIVE_ADOPT = mkDefault "0";
         # Ejecting doesn't work, either.
-        STEAM_ALLOW_DRIVE_UNMOUNT = mkDefault "0";
+        STEAM_ALLOW_DRIVE_UNMOUNT = mkDefault "1";
       };
     }
   ]);
